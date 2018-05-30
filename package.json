@@ -1,0 +1,27 @@
+{
+  "name": "redux-tutorial",
+  "version": "0.0.1",
+  "description": "follow this tutorial: https://egghead.io/lessons/react-redux-the-single-immutable-state-tree",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexrah/redux_tutorial.git"
+  },
+  "keywords": [
+    "tutorial",
+    "redux",
+    "reactjs"
+  ],
+  "author": "Alessandro Stoppato",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexrah/redux_tutorial/issues"
+  },
+  "homepage": "https://github.com/alexrah/redux_tutorial#readme",
+  "devDependencies": {
+    "babel-watch": "^2.0.7"
+  }
+}
