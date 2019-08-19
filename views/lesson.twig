@@ -1,0 +1,11 @@
+{% extends "index.twig" %}
+
+{% block body %}
+
+    {{ lesson.html_content }}
+
+    <script src="{{ lesson.js_path }}"></script>
+
+{% endblock %}
+
+<button onclick="window.history.back()">Back</button>
