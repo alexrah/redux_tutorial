@@ -51,7 +51,7 @@ function getLessons(base_path) {
             }
 
             childrenDir.push({
-                js_path     : path.join('/',base_path,dir, 'main.js'),
+                js_path     : path.join('/js',base_path,dir, 'bundle.js'),
                 html_content: htmlContent,
                 name        : dir,
                 slug        : slugify(dir, "_")
