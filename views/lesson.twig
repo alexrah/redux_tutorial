@@ -4,8 +4,9 @@
 
     {{ lesson.html_content }}
 
-    <script src="{{ lesson.js_path }}"></script>
+    <script src="//{{ host }}{{ lesson.js_path }}"></script>
+
+    <a href="//{{ host }}" >Back</a>
 
 {% endblock %}
 
-<button onclick="window.history.back()">Back</button>

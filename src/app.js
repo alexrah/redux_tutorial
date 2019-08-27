@@ -2,18 +2,11 @@ import express from "express";
 import path from "path";
 import fs from "fs";
 import slugify from "slugify";
+import myconf from "./config";
 
-import Entities from 'html-entities';
-
-const entities = Entities.Html5Entities;
+// let myconf = new config();
 
 const app = express();
-
-const port = "9090";
-
-const asset_dir = 'assets';
-
-const debug = true;
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
@@ -21,6 +14,13 @@ app.set('view engine', 'twig');
 
 app.use(express.static(path.join(__dirname,'/assets') ));
 
+app.use(function (req, res, next) {
+    res.locals = {
+        host: req.headers.host,
+        author: myconf.author,
+    };
+    next();
+});
 
 /**
  * @param base_path string
@@ -33,7 +33,7 @@ function getLessons(base_path) {
      * 2. create array with subdir names
      */
 
-    const parentDir = path.join(__dirname, asset_dir,base_path);
+    const parentDir = path.join(__dirname, myconf.asset_dir,base_path);
 
     let childrenDir = [];
     let files = fs.readdirSync(parentDir);
@@ -67,7 +67,7 @@ function getLessons(base_path) {
 app.get('/',(req,res)=>{
 
     const lessons = getLessons('lessons');
-    res.render('home',{ pages: lessons,title: "Homepage Index",debug: debug });
+    res.render('home',{ pages: lessons,title: "Homepage Index",debug: myconf.debug });
 });
 
 app.get('/lessons/:lesson',(req,res)=>{
@@ -75,21 +75,21 @@ app.get('/lessons/:lesson',(req,res)=>{
     const requested_lesson = req.params.lesson;
     const lessons = getLessons('lessons');
 
-    if (debug) {
+    if (myconf.debug) {
         console.log('lessons', lessons);
         console.log('requested_lesson', requested_lesson);
     }
 
     let lesson_match = lessons.find(lesson => {
 
-        if(debug){
+        if(myconf.debug){
             console.log('lesson.slug', lesson.slug );
         }
 
         return lesson.slug === requested_lesson;
     });
 
-    if(debug) {
+    if(myconf.debug) {
         console.log('lesson_match', lesson_match);
     }
     if( typeof lesson_match !== 'undefined' ){
@@ -105,4 +105,4 @@ app.get('/lessons/:lesson',(req,res)=>{
 
 });
 
-app.listen(port);
+app.listen(myconf.port);

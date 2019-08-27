@@ -5,7 +5,7 @@
     <h1>Table of contents</h1>
     <ul>
         {% for page in pages %}
-            <li><a href="/lessons/{{ page.slug }}">{{ page.name }}</a></li>
+            <li><a href="//{{ host }}/lessons/{{ page.slug }}">{{ page.name }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
